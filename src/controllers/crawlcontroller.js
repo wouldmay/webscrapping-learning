@@ -1,22 +1,6 @@
 import { getBrandProducts } from "../services/crawlerservice.js";
 
-const crawBrandHandler = async (res) => {
-    try {
-        const products = await getBrandProducts()
-        res.json({
-            sucess: true,
-            products
-        })
-    } catch (error) {
-        res.status(500).json({
-            sucess: false,
-            message: "Erro ao realizar o webscrapping.",
-            error: error.message
-        })
-    }
-}
-
-const getProductHandler = async (res) => {
+const getProductHandler = async (req, res) => {
     try {
         const { brand } = req.query
         const allProducts = await getBrandProducts()
@@ -38,4 +22,4 @@ const getProductHandler = async (res) => {
     }
 }
 
-export { crawBrandHandler, getProductHandler }
+export { getProductHandler }

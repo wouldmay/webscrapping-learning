@@ -1,5 +1,6 @@
-POST http://localhost:3000/api/crawl
+// Todos os produtos
+GET http://localhost:3000/api/products
 
 ###
-
+// Produtos filtrados pela marca
 GET http://localhost:3000/api/products?brand=Lenovo
