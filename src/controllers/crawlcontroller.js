@@ -1,9 +1,11 @@
-import { getBrandProducts } from "../services/crawlerservice.js";
+// import { getBrandProducts } from "../services/crawlerservice.js";
+import { crawlBrandItems } from "../crawlers/crawler.js";
 
+// Função que busca os produtos de acordo com a marca
 const getProductHandler = async (req, res) => {
     try {
         const { brand } = req.query
-        const allProducts = await getBrandProducts()
+        const allProducts = await crawlBrandItems()
 
         const filteredProducts = brand
             ? allProducts.filter(product => product.name.toLowerCase().includes(brand.toLowerCase()))

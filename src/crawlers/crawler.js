@@ -5,7 +5,7 @@ import productOrganizer from '../utils/product_organizer.js';
 const BASE_URL = 'https://webscraper.io/test-sites/e-commerce/static/computers/laptops';
 
 
-// Func para coletar produtos de uma marca específica
+// Func para coletar os produtos do site e suas informações
 const crawlBrandItems = async () => {
     try {
 
