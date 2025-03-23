@@ -6,7 +6,7 @@ const BASE_URL = 'https://webscraper.io/test-sites/e-commerce/static/computers/l
 
 
 // Func para coletar produtos de uma marca específica
-const crawlBrandItems = async (brand) => {
+const crawlBrandItems = async () => {
     try {
 
         let products = []
@@ -22,9 +22,8 @@ const crawlBrandItems = async (brand) => {
         console.log(`Numero total de páginas: ${lastPage}`)
 
         for (currentPage = 1; currentPage <= lastPage; currentPage++) {
+            
             const url = `${BASE_URL}?page=${currentPage}`
-            console.log(`Acessando a página: ${url}`)
-
             const response = await axios.get(url)
             const $ = cheerio.load(response.data)
 
@@ -35,18 +34,14 @@ const crawlBrandItems = async (brand) => {
                 const productDescription = $(element).find('.description').text().trim();
                 const productReview = $(element).find('.review-count').text().trim();
                 const productLink = 'https://webscraper.io' + $(element).find('.title').attr('href');
-                
-                console.log('Todos os produtos:', productName);
 
-                if (productName.toLowerCase().includes(brand.toLowerCase())) {
-                    products.push({
-                        name: productName,
-                        price: productPrice,
-                        description: productDescription,
-                        review: productReview,
-                        link: productLink
-                    })
-                }
+                products.push({
+                    name: productName,
+                    price: productPrice,
+                    description: productDescription,
+                    review: productReview,
+                    link: productLink
+                })
             })
         }
         

@@ -1,17 +1,8 @@
 import { getBrandProducts } from "../services/crawlerservice.js";
 
-const crawBrandHandler = async (req, res) => {
-    const { brand } = req.body
-
-    if (!brand) {
-        return res.status(400).json({
-            sucess: false,
-            message: "É necessário informar a marca desejada no campo 'brand'."
-        })
-    }
-
+const crawBrandHandler = async (res) => {
     try {
-        const products = await getBrandProducts(brand)
+        const products = await getBrandProducts()
         res.json({
             sucess: true,
             products
@@ -25,4 +16,26 @@ const crawBrandHandler = async (req, res) => {
     }
 }
 
-export { crawBrandHandler }
+const getProductHandler = async (res) => {
+    try {
+        const { brand } = req.query
+        const allProducts = await getBrandProducts()
+
+        const filteredProducts = brand
+            ? allProducts.filter(product => product.name.toLowerCase().includes(brand.toLowerCase()))
+            : allProducts
+
+        res.json({
+            sucess: true,
+            products: filteredProducts
+        })
+    } catch (error) {
+        res.status(500).json({
+            sucess: false,
+            message: "Erro ao buscar os produtos.",
+            error: error.message
+        })
+    }
+}
+
+export { crawBrandHandler, getProductHandler }

@@ -1,8 +1,8 @@
 import { crawlBrandItems } from "../crawlers/crawler.js";
 
-const getBrandProducts = async (brand) => {
+const getBrandProducts = async () => {
     try {
-        const products = await crawlBrandItems(brand)
+        const products = await crawlBrandItems()
         return products
     } catch (error) {
         throw new Error(`Erro ao processar a página`)
