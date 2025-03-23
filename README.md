@@ -25,11 +25,8 @@ ou:
 node src/index.js
 ```
 
-#### 1. Coletar todos os laptops disponíveis no site.
-Execute o **POST** em src/routes/routetest.https para iniciar o web scraping e obter a lista de produtos.
-
-#### 2. Listar todos os produtos coletados
-Execute um **GET** em http://localhost:3000/api/products para retornar todos os produtos já extraídos, organizados do mais barato para o mais caro.
+#### 1. Listar todos os produtos coletados
+Execute um **GET** em http://localhost:3000/api/products para retornar todos os laptops disponíveis no site, organizados do mais barato para o mais caro.
 
 ### 3. Filtrar produtos por marca
 Execute um **GET** em http://localhost:3000/api/products?brand=nomedamarca para obter apenas os laptops da marca desejada.
